@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-// this is login page :
+// this is login page 2 :
 const Login = () => {
   const [login, setLogin] = useState({ email: "", pass: "" });
   const navigate = useNavigate();
