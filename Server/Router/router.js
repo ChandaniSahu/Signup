@@ -78,4 +78,11 @@ router.post("/getNotes/:objId", async (req, res) => {
   }
 });
 
+router.post('/deleteNote/:id' , async(req,res)=>{
+  const {id}=req.params
+  const NotDeletedNote=Note.findByIdAndDelete(id)
+  console.log(NotDeletedNote)
+  res.json(NotDeletedNote)
+})
+
 module.exports = router;

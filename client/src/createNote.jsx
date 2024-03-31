@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-const CreateNote = () => {
-  // const [id, setId] = useState("");
+import store from "./store";
+const CreateNote = (props) => {
+  const [id, setId] = useState(0);
   const navigate = useNavigate();
   const [NoteData, setNoteData] = useState({
     objId: "",
@@ -14,11 +15,15 @@ const CreateNote = () => {
     setNoteData({ ...NoteData, [e.target.name]: e.target.value });
   };
   useEffect(() => {
-    setNoteData({ objId: "65f462b5f2f8a838dfe2f497" });
+
+    setNoteData({...NoteData,objId:store.getState().detail.noteID });
+    
   }, []);
+
+
   const createNote = async () => {
     const res = await axios.post(
-      "https://dmy438-3000.csb.app/api/createNote",
+      "http://localhost:3000/api/createNote",
       NoteData,
     );
     console.log(res);

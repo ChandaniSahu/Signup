@@ -4,25 +4,33 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./App.css";
+import store from './store.js'
+import { RiDeleteBin6Line } from "react-icons/ri";
+
 
 const Notes = () => {
-  const [objId, setObjId] = useState("65f462b5f2f8a838dfe2f497");
+
   const [notes, setNotes] = useState([]);
   const navigate = useNavigate();
   const navigateCreatenote = () => {
-    navigate("/createNote");
+    navigate("/createNote")
   };
   useEffect(() => {
     const fun = async () => {
       console.log("useeffect is working");
-      console.log();
+      
+      
       const res = await axios.post(
-        `https://dmy438-3000.csb.app/api/getNotes/${objId}`,
+        `http://localhost:3000/api/getNotes/${store.getState().detail.noteID}`,
       );
       setNotes(res.data);
     };
     fun();
   }, []);
+
+  const deleteNote = async(id)=>{
+    const res= await axios.post(`http://localhost:30000/api/deleteNote${id}`)
+  }
   return (
     <>
       <h1>Notes</h1>
@@ -35,7 +43,7 @@ const Notes = () => {
             <div key={i}>
               {ele.title}
               <br />
-              {ele.content}
+              {ele.content} <RiDeleteBin6Line onClick={()=>deleteNote(ele_id)}/>
             </div>
           );
         })}
