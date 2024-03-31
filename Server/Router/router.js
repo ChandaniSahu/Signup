@@ -3,6 +3,7 @@ const router = express.Router();
 const User = require("../Schema/UserSchema");
 const Note = require("../Schema/NoteSchema");
 
+//for signup page
 router.post("/setData", async (req, res) => {
   try {
     console.log("signup backend");
