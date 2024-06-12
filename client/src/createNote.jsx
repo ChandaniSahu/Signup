@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import store from "./store";
+import {store} from "./store";
 const CreateNote = (props) => {
   const [id, setId] = useState(0);
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const CreateNote = (props) => {
   };
   useEffect(() => {
 
-    setNoteData({...NoteData,objId:store.getState().detail.noteID });
+    setNoteData({...NoteData,objId:persistor.getState().detail.noteID });
     
   }, []);
 
